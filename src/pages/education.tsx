@@ -1,3 +1,3 @@
-export default function education() {
+export default function Education() {
   return <div>education</div>;
 }

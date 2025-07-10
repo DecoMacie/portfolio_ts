@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import Contacts from "./pages/contacts";
 import Portfolio from "./pages/portfolio";
 import Services from "./pages/services";
+import Education from "./pages/education";
+import MediaBlog from "./pages/MediaBlog";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,14 @@ const router = createBrowserRouter([
         path: "/services",
         element: <Services />,
       },
-
+      {
+        path: "/education",
+        element: <Education />,
+      },
+      {
+        path: "/media",
+        element: <MediaBlog />,
+      },
       {
         path: "/contacts",
         element: <Contacts />,
