@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function NavBar() {
   return (
@@ -44,7 +45,7 @@ export default function NavBar() {
             rel="noopener noreferrer"
             className="hover:text-gray-300"
           >
-            LinkedIn
+            <FaLinkedin />
           </a>
           <a
             href="https://www.instagram.com/your-profile"
@@ -52,7 +53,7 @@ export default function NavBar() {
             rel="noopener noreferrer"
             className="hover:text-gray-300"
           >
-            Instagram
+            <FaInstagram />
           </a>
           <a
             href="https://github.com/your-profile"
@@ -60,7 +61,7 @@ export default function NavBar() {
             rel="noopener noreferrer"
             className="hover:text-gray-300"
           >
-            GitHub
+            <FaGithub />
           </a>
         </div>
       </div>
