@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { HtmlTagDescriptor } from "vite";
 import { JSX } from "react";
 
 interface NavBarItems {
@@ -23,7 +22,7 @@ export default function NavBar() {
     ],
     externalLink: [
       {
-        link: "https://www.linkedin.com/in/your-profile",
+        link: "https://www.linkedin.com/in/decomacie",
         icon: <FaLinkedin />,
       },
       {
@@ -31,7 +30,7 @@ export default function NavBar() {
         icon: <FaInstagram />,
       },
       {
-        link: "https://github.com/your-profile",
+        link: "https://github.com/DecoMacie",
         icon: <FaGithub />,
       },
     ],
