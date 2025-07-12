@@ -40,7 +40,10 @@ export default function NavBar() {
     console.log(item.toLowerCase);
     return (
       <li key={item}>
-        <Link className="hover:text-[#228B22]" to={`/${item.toLowerCase()}`}>
+        <Link
+          className="hover:text-[#228B22]"
+          to={!item || item === "Home" ? "/" : `/${item.toLowerCase()}`}
+        >
           {item}
         </Link>
       </li>
