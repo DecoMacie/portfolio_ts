@@ -2,41 +2,29 @@ import { Link } from "react-router-dom";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function NavBar() {
+  const navbarItems: string[] = [
+    "Home",
+    "Portfolio",
+    "Services",
+    "Education",
+    "Media",
+    "Connect",
+  ];
+
+  const renderedNavbarItems = navbarItems.map((item) => {
+    return (
+      <li>
+        <Link className="hover:text-[#228B22]" to="/">
+          {item}
+        </Link>
+      </li>
+    );
+  });
+
   return (
     <nav className="bg-[#E1AD01] text-white space-mono-bold">
       <div className="container mx-auto flex items-center justify-between p-4">
-        <ul className="hidden md:flex space-x-6">
-          <li>
-            <Link className="hover:text-[#228B22]" to="/">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-gray-300" to="/portfolio">
-              Portfolio
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-gray-300" to="/services">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-gray-300" to="/education">
-              Education
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-gray-300" to="/media">
-              Media
-            </Link>
-          </li>
-          <li>
-            <Link className="hover:text-gray-300" to="/contacts">
-              Connect
-            </Link>
-          </li>
-        </ul>
+        <ul className="hidden md:flex space-x-6">{renderedNavbarItems}</ul>
 
         <div className="flex space-x-4">
           <a
