@@ -18,7 +18,7 @@ export default function NavBar() {
       "Services",
       "Education",
       "Media",
-      "Connect",
+      "Contacts",
     ],
     externalLink: [
       {
@@ -37,9 +37,10 @@ export default function NavBar() {
   };
 
   const renderedInternalNavbarItems = navbarItems.internalLink.map((item) => {
+    console.log(item.toLowerCase);
     return (
-      <li>
-        <Link className="hover:text-[#228B22]" to="/">
+      <li key={item}>
+        <Link className="hover:text-[#228B22]" to={`/${item.toLowerCase()}`}>
           {item}
         </Link>
       </li>
@@ -49,6 +50,7 @@ export default function NavBar() {
   const renderedExternalNavbarItems = navbarItems.externalLink.map((item) => {
     return (
       <a
+        key={item.link}
         href={item.link}
         target="_blank"
         rel="noopener noreferrer"
