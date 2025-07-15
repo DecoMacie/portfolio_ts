@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import Root from "./pages/root";
 import HomePage from "./pages/HomePage";
 import Contacts from "./pages/contacts";
@@ -19,6 +23,14 @@ const router = createBrowserRouter([
       {
         path: "/portfolio",
         element: <Portfolio />,
+        loader: async () => {
+          const res = await fetch(
+            "https://api.github.com/users/DecoMacie/repos"
+          );
+          const data = await res.json();
+
+          return data;
+        },
       },
       {
         path: "/services",
@@ -35,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/contacts",
         element: <Contacts />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
       },
     ],
   },
