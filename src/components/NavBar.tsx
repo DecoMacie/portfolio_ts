@@ -37,7 +37,6 @@ export default function NavBar() {
   };
 
   const renderedInternalNavbarItems = navbarItems.internalLink.map((item) => {
-    console.log(item.toLowerCase);
     return (
       <li key={item}>
         <Link

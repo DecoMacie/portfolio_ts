@@ -3,13 +3,14 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import Root from "./pages/root";
+import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
-import Contacts from "./pages/contacts";
-import Portfolio from "./pages/portfolio";
-import Services from "./pages/services";
-import Education from "./pages/education";
+import Contacts from "./pages/Contacts";
+import Portfolio from "./pages/Portfolio";
+import Services from "./pages/Services";
+import Education from "./pages/Education";
 import MediaBlog from "./pages/MediaBlog";
+import { PortfolioRepo } from "./queries/portfolioRepo";
 
 const router = createBrowserRouter([
   {
@@ -23,14 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/portfolio",
         element: <Portfolio />,
-        loader: async () => {
-          const res = await fetch(
-            "https://api.github.com/users/DecoMacie/repos"
-          );
-          const data = await res.json();
-
-          return data;
-        },
+        loader: PortfolioRepo,
       },
       {
         path: "/services",
