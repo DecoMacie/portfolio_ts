@@ -64,7 +64,7 @@ export default function NavBar() {
   });
 
   return (
-    <nav className="bg-[#E1AD01] text-white space-mono-bold">
+    <nav className="mt-0.5 rounded bg-[#E1AD01] text-white space-mono-bold">
       <div className="container mx-auto flex items-center justify-between p-4">
         <ul className="hidden md:flex space-x-6">
           {renderedInternalNavbarItems}

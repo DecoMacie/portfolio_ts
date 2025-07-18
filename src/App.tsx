@@ -6,11 +6,11 @@ import {
 import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
 import Contacts from "./pages/Contacts";
-import Portfolio from "./pages/Portfolio";
+import Portfolio from "./pages/portfolio/Portfolio";
 import Services from "./pages/Services";
 import Education from "./pages/Education";
 import MediaBlog from "./pages/MediaBlog";
-import { PortfolioRepo } from "./queries/portfolioRepo";
+import { portfolioLoader } from "./pages/portfolio/portfolioLoader";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/portfolio",
         element: <Portfolio />,
-        loader: PortfolioRepo,
+        loader: portfolioLoader,
       },
       {
         path: "/services",
