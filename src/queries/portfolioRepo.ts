@@ -9,6 +9,7 @@ interface RepoResponse {
             name: string | null;
         }
         updated_at: string;
+        html_url: string;
 }
 
 export async function PortfolioRepo(): Promise<RepoSummary[]> {
@@ -20,7 +21,7 @@ export async function PortfolioRepo(): Promise<RepoSummary[]> {
     }
     const data: RepoResponse[] = await res.json();
 
-    return data.map(({ name, created_at, description, language, license, updated_at}) => {
+    return data.map(({ name, created_at, description, language, license, updated_at, html_url}) => {
         return{
             name,
             createdAt: created_at,
@@ -28,6 +29,7 @@ export async function PortfolioRepo(): Promise<RepoSummary[]> {
             language: language ?? "N/A",
             license: license?.name,
             updatedAt: updated_at,
+            html_url
         }
     });
 }

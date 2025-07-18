@@ -5,4 +5,5 @@ export interface RepoSummary {
   language: string | null;
   license: string | null;
   updatedAt: string;
+  html_url: string;
 }
