@@ -4,7 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from "./pages/Root";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/home/HomePage";
 import Contacts from "./pages/Contacts";
 import Portfolio from "./pages/portfolio/Portfolio";
 import Services from "./pages/Services";
