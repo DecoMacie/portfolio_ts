@@ -6,10 +6,15 @@ export default function Portfolio() {
 
   return (
     <div>
-      <h1 className="text-3xl space-mono-bold mb-4">My Projects</h1>
+      <h1 className="text-3xl space-mono-bold mb-4 text-white  drop-shadow-[0_0_3px_black]">
+        My Projects • Total: {portfolioSummary.length}
+      </h1>
       <ul className="space-y-4">
         {portfolioSummary.map((repo) => (
-          <li key={repo.name} className="p-4 border rounded shadow-sm">
+          <li
+            key={repo.name}
+            className="p-4 bg-white rounded-lg shadow-md hover:drop-shadow-[0_0_6px_#E1AD01]"
+          >
             <a
               key={repo.name}
               href={repo.html_url}

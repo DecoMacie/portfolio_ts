@@ -1,3 +1,5 @@
+import Cards from "../../components/Cards";
+
 export default function HomePage() {
   return (
     <div className="container w-full max-w-4xl mx-auto">
@@ -22,7 +24,7 @@ export default function HomePage() {
           className="w-72 h-auto rounded-lg object-cover"
         />
       </div>
-      <div>Cards</div>
+      <Cards />
     </div>
   );
 }
