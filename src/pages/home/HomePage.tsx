@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <div className="container w-full  mx-auto">
-      <div className="flex flex-col md:flex-row items-center gap-8 p-6 bg-white rounded-lg shadow-md">
+      <div className="mt-10 flex flex-col justify-between md:flex-row items-center gap-8 p-6 bg-white rounded-lg shadow-md">
         <p className="text-gray-700 text-justify max-w-xl space-mono-regular">
           Hi, I'm{" "}
           <span className="space-mono-bold-italic text-black">
@@ -30,7 +30,7 @@ export default function HomePage() {
           className="w-72 h-auto rounded-lg object-cover"
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {featuredRepos.map((repo) => (
           <Cards key={repo.name} cardData={repo} />
         ))}
