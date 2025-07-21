@@ -11,6 +11,7 @@ import Services from "./pages/Services";
 import Education from "./pages/Education";
 import MediaBlog from "./pages/MediaBlog";
 import { portfolioLoader } from "./pages/portfolio/portfolioLoader";
+import { HomePageLoader } from "./pages/home/HomePageLoader";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+        loader: HomePageLoader,
       },
       {
         path: "/portfolio",

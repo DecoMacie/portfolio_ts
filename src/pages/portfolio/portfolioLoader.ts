@@ -1,5 +1,5 @@
-import type { RepoSummary } from "../../types/repoSummary";
-import { PortfolioRepo } from "../../queries/portfolioRepo";
+import type { RepoSummary } from "../../api/queries/types/repoSummary";
+import { PortfolioRepo } from "../../api/queries/portfolioRepo";
 
 export interface PortfolioLoaderResult {
     portfolioSummary: RepoSummary[];

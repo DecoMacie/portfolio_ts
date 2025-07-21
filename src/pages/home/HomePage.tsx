@@ -1,8 +1,14 @@
+import type { HomePageLoaderResult } from "./HomePageLoader";
+import { useLoaderData } from "react-router-dom";
 import Cards from "../../components/Cards";
 
 export default function HomePage() {
+  const { featuredRepos } = useLoaderData() as HomePageLoaderResult;
+
+  console.log(featuredRepos[1]);
+
   return (
-    <div className="container w-full max-w-4xl mx-auto">
+    <div className="container w-full  mx-auto">
       <div className="flex flex-col md:flex-row items-center gap-8 p-6 bg-white rounded-lg shadow-md">
         <p className="text-gray-700 text-justify max-w-xl space-mono-regular">
           Hi, I'm{" "}
@@ -24,7 +30,11 @@ export default function HomePage() {
           className="w-72 h-auto rounded-lg object-cover"
         />
       </div>
-      <Cards />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        {featuredRepos.map((repo) => (
+          <Cards key={repo.name} cardData={repo} />
+        ))}
+      </div>
     </div>
   );
 }

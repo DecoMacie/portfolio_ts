@@ -1,4 +1,11 @@
-import { RepoSummary } from "../types/repoSummary";
+import type { RepoSummary } from "../types/repoSummary";
+
+const FEATURED_REPOS = [
+    'calculator-js',
+    'mapsclone',
+    'registry',
+    'Weather_Dashboard'
+]
 
 interface RepoResponse {
         name: string;
@@ -12,14 +19,12 @@ interface RepoResponse {
         html_url: string;
 }
 
-export async function PortfolioRepo(): Promise<RepoSummary[]> {
-    const res = await fetch("https://api.github.com/users/DecoMacie/repos");
-    
-    if (!res.ok) {
-        throw new Error("--- Failed to fetch GitHub repositories ---  :(")
-        
-    }
-    const data: RepoResponse[] = await res.json();
+export async function getFeaturedRepo(): Promise<RepoSummary[]>  {
+    const promises = FEATURED_REPOS.map(async (name) => {
+        const res= await fetch(`https://api.github.com/repos/DecoMacie/${name}`);
+        return res.json()
+    })
+    const data: RepoResponse[] = await Promise.all(promises);
 
     return data.map(({ name, created_at, description, language, license, updated_at, html_url}) => {
         return{
@@ -32,4 +37,5 @@ export async function PortfolioRepo(): Promise<RepoSummary[]> {
             html_url
         }
     });
+
 }
