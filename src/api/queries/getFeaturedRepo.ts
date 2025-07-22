@@ -21,7 +21,7 @@ interface RepoResponse {
 
 export async function getFeaturedRepo(): Promise<RepoSummary[]>  {
     const promises = FEATURED_REPOS.map(async (name) => {
-        const res= await fetch(`https://api.github.com/repos/DecoMacie/${name}`);
+        const res = await fetch(`https://api.github.com/repos/DecoMacie/${name}`);
         return res.json()
     })
     const data: RepoResponse[] = await Promise.all(promises);
