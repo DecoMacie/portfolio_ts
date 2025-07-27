@@ -1,31 +1,90 @@
+// import Urlbox from "urlbox";
 import { useNavigate } from "react-router-dom";
 import { getDeployedURL } from "../api/queries/getDeployedURL";
 import type { RepoSummary } from "../api/types/repoSummary";
+import { useEffect, useState } from "react";
 
 interface CardProps {
   cardData: RepoSummary;
 }
 
 export default function Cards({ cardData }: CardProps) {
+  const [deployedURL, setDeployedURL] = useState<string | null>(null);
+  const [screenshotUrl, setScreenshotUrl] = useState<string>(
+    "https://placehold.co/600x400?text=Loading..."
+  );
+
+  useEffect(() => {
+    const fetchURL = async () => {
+      const url = await getDeployedURL(cardData.name);
+      setDeployedURL(url);
+
+      if (url) {
+        const imageUrl = `https://shot.screenshotapi.net/screenshot?token=${
+          import.meta.env.VITE_SCREENSHOT_API_KEY
+        }&url=${encodeURIComponent(
+          url
+        )}&output=image&file_type=jpeg&wait_for_event=load`;
+
+        setScreenshotUrl(imageUrl);
+      }
+    };
+
+    fetchURL();
+  }, [cardData.name]);
+
   const navigate = useNavigate();
 
-  const handleClick = async () => {
-    const deployedURL = await getDeployedURL(cardData.name);
+  // const urlbox = Urlbox(
+  //   import.meta.env.VITE_URLBOX_PKEY,
+  //   import.meta.env.VITE_URLBOX_SKEY
+  // );
+
+  // const options = {
+  //   url: deployedURL ?? "",
+  //   thumb_width: 600,
+  //   format: "jpg" as const,
+  //   quality: 80,
+  // };
+
+  // const imgUrl =
+  //   deployedURL && deployedURL.startsWith("http") // ✅ Avoid generating if URL is bad
+  //     ? urlbox.generateRenderLink(options)
+  //     : "https://placehold.co/600x400?text=Preview+Unavailable";
+
+  // const snapshotUrl = () => {
+  //   return deployedURL
+  //     ? `https://image.thum.io/get/width/800/crop/600/noanimate/${deployedURL}`
+  //     : "https://placehold.co/600x400.png";
+  // };
+
+  // console.log(imgUrl);
+
+  const handleClick = () => {
     if (deployedURL) {
-      // Redirect to external GitHub Pages URL
-      window.open(deployedURL, "_blank");
+      window.open(deployedURL, "_blank", "noopener,noreferrer");
     } else {
-      // Optionally navigate to an internal fallback route
-      console.log(deployedURL);
       navigate("/not-found");
     }
   };
+
+  // const handleClick = async () => {
+  //   const deployedURL = await getDeployedURL(cardData.name);
+  //   if (deployedURL) {
+  //     // Redirect to external GitHub Pages URL
+  //     window.open(deployedURL, "_blank", "noopener,noreferrer");
+  //   } else {
+  //     // Optionally navigate to an internal fallback route
+  //     console.log(deployedURL);
+  //     navigate("/not-found");
+  //   }
+  // };
 
   return (
     <div className="flex flex-col h-full max-w-sm rounded-lg overflow-hidden shadow-md bg-white hover:drop-shadow-[0_0_6px_#E1AD01] transition-shadow duration-300">
       <img
         className="w-full h-48 object-cover"
-        src="https://placehold.co/600x400.png"
+        src={screenshotUrl}
         alt={cardData.name}
       />
       <div className="flex flex-col grow p-6">

@@ -3,9 +3,9 @@ interface PagesGithub {
 }
 
 export async function getDeployedURL(name: string): Promise<string | null> {
-  try {
+  const userName = "DecoMacie"
     const res = await fetch(
-      `https://api.github.com/repos/DecoMacie/${name}/pages`,
+      `https://api.github.com/repos/${userName}/${name}/pages`,
       {
         headers: {
           Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`, // Required!
@@ -15,14 +15,18 @@ export async function getDeployedURL(name: string): Promise<string | null> {
     );
 
     if (!res.ok) {
+      if (res.status === 404) {
+      console.warn(`GitHub Pages not enabled for ${name}`);
       return null;
+    }
+    throw new Error(`Failed to fetch deployment info for ${name}`);
     }
 
     const data: PagesGithub = await res.json();
 
-    return data.html_url;
-  } catch (err) {
-    console.error("Link does not exist or failed:", err);
-    return null;
-  }
+    return data.html_url || null;
+  // } catch (err) {
+  //   console.error("Link does not exist or failed:", err);
+  //   return null;
+  // }
 }
