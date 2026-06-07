@@ -11,6 +11,7 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
+  console.log("Token exists:", !!process.env.GITHUB_TOKEN);
   try {
     const responses = await Promise.all(
       FEATURED_REPOS.map(async (repo) => {
