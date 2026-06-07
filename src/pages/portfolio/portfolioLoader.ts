@@ -1,4 +1,4 @@
-import type { RepoSummary } from "../../api/queries/types/repoSummary";
+import type { RepoSummary } from "../../api/types/repoSummary";
 import { PortfolioRepo } from "../../api/queries/portfolioRepo";
 
 export interface PortfolioLoaderResult {
