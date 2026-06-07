@@ -6,29 +6,42 @@ export default function Portfolio() {
 
   return (
     <div>
-      <h1 className="text-3xl space-mono-bold mb-4 text-white  drop-shadow-[0_0_3px_black]">
+      <h1 className="text-3xl space-mono-bold mb-6 text-[#1C1C1C]">
         My Projects • Total: {portfolioSummary.length}
       </h1>
+
       <ul className="space-y-4">
         {portfolioSummary.map((repo) => (
           <li
             key={repo.name}
-            className="p-4 bg-white rounded-lg shadow-md hover:drop-shadow-[0_0_6px_#E1AD01]"
+            className="
+            p-4 bg-white border border-[#E7E5E0]
+            rounded-lg shadow-sm
+            hover:shadow-md hover:border-[#D9A400]/40
+            transition-all duration-300
+          "
           >
             <a
-              key={repo.name}
               href={repo.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#228B22]"
+              className="block space-y-2"
             >
-              <h3 className="text-lg space-mono-bold">{repo.name}</h3>
+              {/* Title */}
+              <h3 className="text-lg space-mono-bold text-[#1C1C1C] hover:text-[#14B8A6] transition-colors">
+                {repo.name}
+              </h3>
+
+              {/* Description */}
               <p className="text-gray-600 space-mono-regular">
                 {repo.description}
               </p>
+
+              {/* Meta */}
               <p className="text-sm text-gray-500 space-mono-regular">
-                Language: {repo.language} • Updated:{" "}
-                {new Date(repo.updatedAt).toLocaleDateString()}
+                Language:{" "}
+                <span className="text-[#14B8A6]">{repo.language}</span> •
+                Updated: {new Date(repo.updatedAt).toLocaleDateString()}
               </p>
             </a>
           </li>

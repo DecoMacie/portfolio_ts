@@ -1,32 +1,23 @@
-interface PagesGithub {
-  html_url: string;
-}
+import { projects } from "../data/projectsLink";
 
-export async function getDeployedURL(name: string): Promise<string | null> {
-  const userName = "DecoMacie"
-    const res = await fetch(
-      `https://api.github.com/repos/${userName}/${name}/pages`,
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`, // Required!
-          Accept: "application/vnd.github+json",
-        },
-      }
-    );
+export function getDeployedURL(repoName: string): string | null {
+  const project = projects.find((p) => p.name === repoName);
 
-    if (!res.ok) {
-      if (res.status === 404) {
-      console.warn(`GitHub Pages not enabled for ${name}`);
-      return null;
-    }
-    throw new Error(`Failed to fetch deployment info for ${name}`);
-    }
+  if (!project) return null;
 
-    const data: PagesGithub = await res.json();
+  // 1. If explicitly defined URL → use it
+  if (project.liveUrl) {
+    return project.liveUrl;
+  }
 
-    return data.html_url || null;
-  // } catch (err) {
-  //   console.error("Link does not exist or failed:", err);
-  //   return null;
-  // }
+  // 2. Fallback based on type
+  if (project.type === "github") {
+    return `https://decomacie.github.io/${project.name}/`;
+  }
+
+  if (project.type === "vercel") {
+    return `https://${project.name}.vercel.app`;
+  }
+
+  return null;
 }

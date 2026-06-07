@@ -1,4 +1,4 @@
-import { RepoSummary } from "./types/repoSummary";
+import { RepoSummary } from "../types/repoSummary";
 
 interface RepoResponse {
         name: string;

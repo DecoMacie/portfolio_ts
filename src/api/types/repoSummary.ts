@@ -7,3 +7,9 @@ export interface RepoSummary {
   updatedAt: string;
   html_url: string;
 }
+
+export type Project = {
+  name: string;
+  liveUrl?: string;
+  type?: "vercel" | "github";
+}

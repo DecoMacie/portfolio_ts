@@ -1,45 +1,55 @@
 import type { HomePageLoaderResult } from "./homePageLoader";
 import { useLoaderData } from "react-router-dom";
+import ElevatorPitch from "./ElevatorPitch";
 import Cards from "../../components/Cards";
 
 export default function HomePage() {
   const { featuredRepos } = useLoaderData() as HomePageLoaderResult;
 
-  // const elevatorPitch = ``
-
   return (
-    <div className="container w-full  mx-auto">
-      <div className="mt-10 flex flex-col justify-between md:flex-row items-center gap-8 p-6 bg-white rounded-lg shadow-md">
-        <div className="w-[50%]">
-          <p className="text-gray-600 space-mono-regular text-sm mb-4">
-            Hi, I'm{" "}
-            <span className="space-mono-bold-italic text-black">
-              Dercio Macie
-            </span>{" "}
-            — a web developer who turns ideas into interactive experiences.
-          </p>
-
-          <p className="text-gray-600 space-mono-regular text-sm mb-4">
-            I specialize in building responsive, accessible, and
-            performance-driven websites using modern technologies like{" "}
-            <span className="text-blue-600">React</span>,{" "}
-            <span className="text-purple-600">Redux</span>, and{" "}
-            <span className="text-teal-600">Tailwind CSS</span>. .
-          </p>
-
-          <p className="text-gray-600 space-mono-regular text-sm mb-4">
-            Whether it's a sleek landing page or a full-stack application, I
-            focus on clean code, intuitive design, and seamless user
-            experiences.
-          </p>
+    <div className="container w-full mx-auto">
+      {/* HERO SECTION */}
+      <div
+        className="
+    mt-10
+    flex flex-col md:flex-row
+    items-center
+    justify-center
+    gap-8
+    p-6
+    bg-white
+    border border-[#E7E5E0]
+    rounded-lg
+    shadow-sm
+    hover:shadow-md
+    transition-shadow duration-300
+  "
+      >
+        {/* TEXT */}
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <ElevatorPitch />
         </div>
+
+        {/* IMAGE */}
         <img
-          src="https://placehold.co/600x400.png"
+          src="src/assets/Profile 5.1.png"
           alt="profile image"
-          className="w-72 h-auto rounded-lg object-cover"
+          className="
+      w-40 sm:w-52 md:w-72
+      h-auto
+      rounded-lg
+      object-cover
+      border-b-2 border-[#E7E5E0]
+    "
         />
       </div>
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+      {/* PROJECT GRID */}
+      <div
+        className="
+      mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6
+    "
+      >
         {featuredRepos.map((repo) => (
           <Cards key={repo.name} cardData={repo} />
         ))}
