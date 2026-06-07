@@ -23,10 +23,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         );
 
         if (!response.ok) {
-          const text = await response.text();
+          const body = await response.text();
 
-          console.error(`${repo} status:`, response.status);
-          console.error(text);
+          console.error("Repo:", repo);
+          console.error("Status:", response.status);
+          console.error("Response:", body);
 
           throw new Error(`Failed to fetch ${repo}`);
         }
