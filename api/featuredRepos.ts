@@ -7,10 +7,7 @@ const FEATURED_REPOS = [
   "Weather_Dashboard",
 ];
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log("Token exists:", !!process.env.GITHUB_TOKEN);
   try {
     const responses = await Promise.all(
@@ -22,15 +19,20 @@ export default async function handler(
               Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
               Accept: "application/vnd.github+json",
             },
-          }
+          },
         );
 
         if (!response.ok) {
+          const text = await response.text();
+
+          console.error(`${repo} status:`, response.status);
+          console.error(text);
+
           throw new Error(`Failed to fetch ${repo}`);
         }
 
         return response.json();
-      })
+      }),
     );
 
     const data = responses.map(
@@ -50,7 +52,7 @@ export default async function handler(
         license: license?.name ?? null,
         updatedAt: updated_at,
         html_url,
-      })
+      }),
     );
 
     res.status(200).json(data);
