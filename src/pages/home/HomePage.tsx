@@ -1,5 +1,6 @@
 import type { HomePageLoaderResult } from "./homePageLoader";
 import { useLoaderData } from "react-router-dom";
+import profileImage from "../../assets/Profile 5.1.png";
 import ElevatorPitch from "./ElevatorPitch";
 import Cards from "../../components/Cards";
 
@@ -32,7 +33,7 @@ export default function HomePage() {
 
         {/* IMAGE */}
         <img
-          src="src/assets/Profile 5.1.png"
+          src={profileImage}
           alt="profile image"
           className="
       w-40 sm:w-52 md:w-72
