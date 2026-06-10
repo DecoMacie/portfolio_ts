@@ -13,7 +13,7 @@ export const projects: Project[] = [
   },
   {
     name: "registry",
-    liveUrl: "https://decomacie.github.io/calculator-js/",
+    liveUrl: "https://decomacie.github.io/registry/",
     type: "github",
   },
   {
