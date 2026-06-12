@@ -21,7 +21,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             },
           },
         );
-
+        
+        console.log(`${repo}: ${response.status}`);
         if (!response.ok) {
           const body = await response.text();
 

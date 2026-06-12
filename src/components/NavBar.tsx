@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
-import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { JSX, useState } from "react";
+import { contacts } from "../api/data/contacts";
+import { useState } from "react";
 
 interface NavBarItems {
   internalLink: string[];
-  externalLink: {
-    link: string;
-    icon: JSX.Element;
-  }[];
 }
 
 export default function NavBar() {
@@ -22,21 +18,12 @@ export default function NavBar() {
       "Media",
       "Contacts",
     ],
-    externalLink: [
-      {
-        link: "https://www.linkedin.com/in/decomacie",
-        icon: <FaLinkedin />,
-      },
-      {
-        link: "https://www.instagram.com/devmacie?igsh=MXRkcTNqZnhpOW50Yg%3D%3D&utm_source=qr",
-        icon: <FaInstagram />,
-      },
-      {
-        link: "https://github.com/DecoMacie",
-        icon: <FaGithub />,
-      },
-    ],
   };
+
+  const socialContacts = contacts.filter((contact) => contact.showInNavbar);
+
+  const formatPath = (item: string) =>
+    item === "Home" ? "/" : `/${item.toLowerCase()}`;
 
   return (
     <nav className="mt-0.5 bg-[#D9A400] text-white space-mono-bold">
@@ -47,7 +34,7 @@ export default function NavBar() {
             <li key={item}>
               <Link
                 className="hover:text-[#14B8A6] transition-colors"
-                to={!item || item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                to={formatPath(item)}
               >
                 {item}
               </Link>
@@ -55,25 +42,31 @@ export default function NavBar() {
           ))}
         </ul>
 
-        {/* External links */}
+        {/* Desktop social links */}
         <div className="flex items-center gap-4 text-lg md:text-base">
-          {navbarItems.externalLink.map((item) => (
-            <a
-              key={item.link}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#14B8A6] transition-colors"
-            >
-              {item.icon}
-            </a>
-          ))}
+          {socialContacts.map((contact) => {
+            const Icon = contact.icon;
+
+            return (
+              <a
+                key={contact.name}
+                href={contact.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#14B8A6] transition-colors"
+                aria-label={contact.name}
+              >
+                <Icon />
+              </a>
+            );
+          })}
         </div>
 
-        {/* Hamburger button */}
+        {/* Hamburger */}
         <button
           className="md:hidden flex flex-col justify-center items-center w-10 h-10"
           onClick={() => setIsOpen((prev) => !prev)}
+          aria-label="Toggle menu"
         >
           <span
             className={`block h-0.5 w-6 bg-white transition-transform ${
@@ -101,7 +94,7 @@ export default function NavBar() {
             {navbarItems.internalLink.map((item) => (
               <li key={item}>
                 <Link
-                  to={!item || item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  to={formatPath(item)}
                   onClick={() => setIsOpen(false)}
                   className="block hover:text-[#14B8A6] transition-colors"
                 >
@@ -113,18 +106,23 @@ export default function NavBar() {
 
           {/* External links */}
           <div className="flex gap-4 text-lg">
-            {navbarItems.externalLink.map((item) => (
-              <a
-                key={item.link}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#14B8A6] transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.icon}
-              </a>
-            ))}
+            {socialContacts.map((contact) => {
+              const Icon = contact.icon;
+
+              return (
+                <a
+                  key={contact.name}
+                  href={contact.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#14B8A6] transition-colors"
+                  aria-label={contact.name}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Icon />
+                </a>
+              );
+            })}
           </div>
         </div>
       )}
