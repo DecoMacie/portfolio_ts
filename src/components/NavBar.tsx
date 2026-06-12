@@ -28,7 +28,7 @@ export default function NavBar() {
         icon: <FaLinkedin />,
       },
       {
-        link: "https://www.instagram.com/your-profile",
+        link: "https://www.instagram.com/devmacie?igsh=MXRkcTNqZnhpOW50Yg%3D%3D&utm_source=qr",
         icon: <FaInstagram />,
       },
       {
